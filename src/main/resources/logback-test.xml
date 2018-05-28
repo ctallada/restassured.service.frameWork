@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+
+<appender name="rollingFile"
+class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+<!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+
+<File>target/logs/logback.log</File>
+<encoder>
+<pattern>
+%d{EEE MMM dd HH:mm:ss z yyyy}|**%p**| %C | %m |Client Details{sdpGrid:%X{sdpGrid},ClientName: %X{ClientName} ClientInstanceName: %X{ClientInstanceName},ClientThreadName: %X{ClientThreadName},ClientId: %X{ClientId},RequestID: %X{RequestID} }| %t%n
+</pattern>
+</encoder>
+<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+<maxIndex>10</maxIndex>
+<FileNamePattern>../mpAPI-test/target/logs/logback.log.%i
+</FileNamePattern>
+</rollingPolicy>
+<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+<MaxFileSize>10</MaxFileSize>
+</triggeringPolicy>
+</appender>
+
+<logger name="marcketplace" level="DEBUG" />
+
+<root level="ERROR">
+<appender-ref ref="rollingFile" />
+</root>
+
+
+
+</configuration>
